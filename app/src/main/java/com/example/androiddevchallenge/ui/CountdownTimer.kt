@@ -145,8 +145,10 @@ fun CountdownTimer() {
                         // stop
                         Button(onClick = {
                             state = CountdownTimerState.STOPPED
-                            countDownTimer!!.cancel()
-                            countDownTimer = null
+                            countDownTimer?.run {
+                                cancel()
+                                countDownTimer = null
+                            }
                             remainingTimeMillis = null
                         }) {
                             Icon(Icons.Filled.StopCircle, stringResource(R.string.stop))
